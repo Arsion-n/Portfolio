@@ -12,19 +12,22 @@
 .site-nav {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
 }
 
 .site-brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--nav-height);
   white-space: nowrap;
   font-weight: bold;
-  flex: 0 0 auto;
   text-decoration: none;
   color: inherit;
 }
 
 .site-nav-right {
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -103,6 +106,14 @@
 }
 
 @media screen and (min-width: 850px) {
+  .site-nav {
+    justify-content: flex-start;
+  }
+
+  .site-nav-right {
+    flex: 1 1 auto;
+  }
+
   .mobile-nav-wrap {
     display: none;
   }
