@@ -4,4 +4,58 @@ import Layout from '../layouts/Layout.astro'
 
 <Layout>
   <h1 class="visuallyhidden">Arison N. – Civil Engineering Student & Interior Designer</h1>
+
+  <div class="showcase">
+    <!-- Hero -->
+    <section class="showcase-section">
+      <div class="unit-wrapper hero theme-light">
+        <div class="unit-copy">
+          <h2 class="unit-headline">Arison N.</h2>
+          <p class="unit-subhead">Civil Engineering Student & Interior Designer based in Hong Kong.</p>
+          <div class="cta-links">
+            <a class="btn btn-primary" href="/projects/">View Projects</a>
+            <a class="btn btn-secondary" href="/about/">About Me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Project — full width, dark -->
+    <section class="showcase-section">
+      <div class="unit-wrapper theme-dark">
+        <div class="unit-copy">
+          <h2 class="unit-headline">Project A</h2>
+          <p class="unit-subhead">A brief description of this project and what makes it stand out.</p>
+          <div class="cta-links">
+            <a class="btn btn-primary" href="/projects/project-a/">Learn More</a>
+          </div>
+        </div>
+        <div class="unit-image-wrapper">
+          <div class="unit-image"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Two-column promo cards -->
+    <div class="promo-grid">
+      <a class="promo-card theme-light" href="/projects/project-b/">
+        <div class="unit-copy">
+          <h2 class="promo-headline">Project B</h2>
+          <p class="promo-subhead">Short description of the project scope and outcome.</p>
+        </div>
+        <div class="promo-image"></div>
+      </a>
+      <a class="promo-card theme-dark" href="/projects/project-c/">
+        <div class="unit-copy">
+          <h2 class="promo-headline">Project C</h2>
+          <p class="promo-subhead">Short description of the project scope and outcome.</p>
+        </div>
+        <div class="promo-image"></div>
+      </a>
+    </div>
+  </div>
 </Layout>
+
+<style>
+  @import '../styles/main.css';
+</style>

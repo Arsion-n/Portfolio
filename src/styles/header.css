@@ -19,6 +19,8 @@
   white-space: nowrap;
   font-weight: bold;
   flex: 0 0 auto;
+  text-decoration: none;
+  color: inherit;
 }
 
 .site-nav-right {

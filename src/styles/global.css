@@ -1,8 +1,9 @@
+@import './fonts.css';
+
 :root {
   --nav-height: 50px;
   --nav-max-width: 1100px;
   --nav-padding-inline: 25px;
-  /* breakpoint: 850px (media queries don't support var(), noted here for reference) */
   --nav-color: rgba(0, 0, 0, .8);
   --nav-color-hover: #000;
   --nav-bg: rgba(255, 255, 255, .8);
@@ -12,66 +13,48 @@
   --nav-easing: cubic-bezier(.4, 0, .6, 1);
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   background-color: #fff;
   color: #191919;
-  font-family: sans-serif;
+  font-family: 'Urbanist', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  line-height: 1.5;
 }
 
 header {
   position: sticky;
   top: 0;
   width: 100%;
-  padding: 0;
   min-height: var(--nav-height);
-  height: auto;
   background-color: var(--nav-bg);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
   z-index: 100;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  line-height: 1.5;
-}
-
-main {
-  width: 100%;
-  margin: 0;
-}
-
-* {
-  box-sizing: border-box;
-}
-
 .visuallyhidden {
   position: absolute;
-  clip: rect(1px, 1px, 1px, 1px);
   -webkit-clip-path: inset(0px 0px 99.9% 99.9%);
   clip-path: inset(0px 0px 99.9% 99.9%);
   overflow: hidden;
   height: 1px;
   width: 1px;
   padding: 0;
-  border: 0
+  border: 0;
 }
 
-/* nav styles */
-
-.nav-links {
-  width: 100%;
-  margin: 0;
-}
-
-.nav-desktop {
-  display: none;
-}
-
-.nav-mobile {
-  display: block;
-}
+/* ── Nav links ── */
 
 .nav-links a {
   text-decoration: none;
@@ -97,14 +80,15 @@ main {
   outline: none;
 }
 
+.nav-desktop {
+  display: none;
+}
+
 @media screen and (min-width: 850px) {
   .nav-desktop {
     margin-left: 5em;
     display: flex;
     align-items: center;
-    position: static;
-    width: auto;
-    background: none;
   }
 
   .nav-desktop > a {

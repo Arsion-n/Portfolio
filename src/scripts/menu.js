@@ -55,12 +55,22 @@ document.querySelectorAll('.mobile-nav-trigger').forEach((trigger) => {
 
 /* ── Desktop flyout (shared container, JS-driven hover) ── */
 
+const header = document.querySelector('.site-header');
 const flyoutTriggers = document.querySelectorAll('[data-flyout]');
 const flyoutContainer = document.querySelector('.flyout-container');
 const flyoutPanels = document.querySelectorAll('.flyout-panel');
 const nonFlyoutLinks = document.querySelectorAll('.nav-desktop > a:not([data-flyout])');
+const siteBrand = document.querySelector('.site-brand');
 
 let hideTimer = null;
+
+function isFlyoutActive() {
+  return flyoutContainer?.classList.contains('active');
+}
+
+function isInsideHoverZone(el) {
+  return el && (header?.contains(el) || flyoutContainer?.contains(el));
+}
 
 function showFlyout(targetId) {
   clearTimeout(hideTimer);
@@ -91,12 +101,23 @@ flyoutTriggers.forEach(trigger => {
     const target = trigger.getAttribute('data-flyout');
     if (target) showFlyout(target);
   });
-  trigger.addEventListener('mouseleave', hideFlyout);
 });
-
-flyoutContainer?.addEventListener('mouseenter', () => clearTimeout(hideTimer));
-flyoutContainer?.addEventListener('mouseleave', hideFlyout);
 
 nonFlyoutLinks.forEach(link => {
   link.addEventListener('mouseenter', hideFlyoutNow);
+});
+
+siteBrand?.addEventListener('mouseenter', () => {
+  if (isFlyoutActive()) hideFlyoutNow();
+});
+
+header?.addEventListener('mouseleave', (e) => {
+  if (!isFlyoutActive()) return;
+  if (isInsideHoverZone(e.relatedTarget)) return;
+  hideFlyout();
+});
+
+flyoutContainer?.addEventListener('mouseleave', (e) => {
+  if (isInsideHoverZone(e.relatedTarget)) return;
+  hideFlyout();
 });
