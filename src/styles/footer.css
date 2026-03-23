@@ -1,0 +1,113 @@
+/* ── Footer ── */
+
+footer {
+  width: 100%;
+  margin-top: 2rem;
+  background-color: #f5f5f7;
+  color: rgba(0, 0, 0, .56);
+  font-size: 12px;
+  line-height: 1.333;
+  letter-spacing: -.01em;
+}
+
+.footer-content {
+  max-width: var(--nav-max-width);
+  margin: 0 auto;
+  padding-inline-start: max(var(--nav-padding-inline), env(safe-area-inset-left));
+  padding-inline-end: max(var(--nav-padding-inline), env(safe-area-inset-right));
+}
+
+/* ── Directory (multi-column nav) ── */
+
+.footer-directory {
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
+}
+
+.footer-directory-column {
+  flex-basis: 33.333%;
+}
+
+.footer-directory-section ~ .footer-directory-section {
+  padding-top: 20px;
+}
+
+.footer-section-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  line-height: 1.333;
+  color: rgba(0, 0, 0, .88);
+  margin: 0 0 .6em;
+}
+
+.footer-section-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-section-list li {
+  margin-bottom: .8em;
+}
+
+.footer-section-list a {
+  color: rgba(0, 0, 0, .56);
+  text-decoration: none;
+  transition: color .32s cubic-bezier(.4, 0, .6, 1);
+}
+
+.footer-section-list a:hover {
+  color: rgba(0, 0, 0, .88);
+  text-decoration: underline;
+}
+
+.footer-text {
+  color: rgba(0, 0, 0, .56);
+}
+
+/* ── Bottom bar (copyright) ── */
+
+.footer-bottom {
+  padding: 17px 0;
+  padding-bottom: max(17px, env(safe-area-inset-bottom));
+}
+
+.footer-copyright {
+  color: rgba(0, 0, 0, .48);
+  font-size: 12px;
+}
+
+/* ── Mobile ── */
+
+@media screen and (max-width: 849px) {
+  .footer-directory {
+    flex-direction: column;
+  }
+
+  .footer-directory-column {
+    flex-basis: auto;
+  }
+
+  .footer-directory-column ~ .footer-directory-column {
+    padding-top: 0;
+  }
+
+  .footer-directory-section ~ .footer-directory-section {
+    padding-top: 16px;
+  }
+
+  .footer-directory-section {
+    padding-top: 16px;
+  }
+
+  .footer-directory-section:first-child {
+    padding-top: 0;
+  }
+
+  .footer-directory-column:first-child .footer-directory-section:first-child {
+    padding-top: 0;
+  }
+}

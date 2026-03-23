@@ -1,0 +1,64 @@
+---
+import { navItems, getFlatChildren } from '../data/navData';
+---
+
+<footer id="site-footer" role="contentinfo">
+  <div class="footer-content">
+    <nav class="footer-directory" aria-label="Site directory">
+      <div class="footer-directory-column">
+        <div class="footer-directory-section">
+          <h3 class="footer-section-title">Navigation</h3>
+          <ul class="footer-section-list">
+            {navItems.map((item) => (
+              <li><a href={item.href}>{item.label}</a></li>
+            ))}
+          </ul>
+        </div>
+        <div class="footer-directory-section">
+          <h3 class="footer-section-title">Projects</h3>
+          <ul class="footer-section-list">
+            {getFlatChildren(navItems[1]).map((child) => (
+              <li><a href={child.href}>{child.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div class="footer-directory-column">
+        <div class="footer-directory-section">
+          <h3 class="footer-section-title">About</h3>
+          <ul class="footer-section-list">
+            {getFlatChildren(navItems[2]).map((child) => (
+              <li><a href={child.href}>{child.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div class="footer-directory-column">
+        <div class="footer-directory-section">
+          <h3 class="footer-section-title">Contact</h3>
+          <ul class="footer-section-list">
+            <li><a href="mailto:arison@arison-n.com">arison@arison-n.com</a></li>
+            <li><span class="footer-text">Hong Kong</span></li>
+          </ul>
+        </div>
+        <div class="footer-directory-section">
+          <h3 class="footer-section-title">Connect</h3>
+          <ul class="footer-section-list">
+            <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="footer-bottom">
+      <div class="footer-copyright">
+        Copyright &copy; {new Date().getFullYear()} Arison N. All rights reserved.
+      </div>
+    </section>
+  </div>
+</footer>
+
+<style>
+  @import '../styles/footer.css';
+</style>

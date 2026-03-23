@@ -1,0 +1,107 @@
+/* Header layout (kept separate for easier reading/modifying) */
+
+.header-inner {
+  max-width: var(--nav-max-width);
+  margin: 0 auto;
+  padding-inline-start: max(var(--nav-padding-inline), env(safe-area-inset-left));
+  padding-inline-end: max(var(--nav-padding-inline), env(safe-area-inset-right));
+  min-height: var(--nav-height);
+  position: relative;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.site-brand {
+  white-space: nowrap;
+  font-weight: bold;
+  flex: 0 0 auto;
+}
+
+.site-nav-right {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.mobile-nav-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--nav-height);
+  min-height: calc(100vh - var(--nav-height));
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--nav-duration) var(--nav-easing);
+  z-index: 20;
+  background-color: #fff;
+}
+
+.site-header.menu-open .mobile-nav-wrap {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Curtain overlay behind mobile menu */
+.mobile-nav-curtain {
+  position: fixed;
+  inset: 0;
+  background: rgba(232, 232, 237, .4);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 10;
+  transition: opacity .32s var(--nav-easing), visibility .32s step-end;
+}
+
+.site-header.menu-open ~ .mobile-nav-curtain {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .32s var(--nav-easing), visibility .32s step-start;
+}
+
+/* Mobile nav staggered animation (top-level items only) */
+.nav-mobile > a,
+.nav-mobile > .mobile-nav-group {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity var(--nav-duration) var(--nav-easing),
+              transform var(--nav-duration) var(--nav-easing);
+  transition-delay: calc(.12s + var(--item-index, 0) * 40ms);
+}
+
+.site-header.menu-open .nav-mobile > a,
+.site-header.menu-open .nav-mobile > .mobile-nav-group {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.site-header:not(.menu-open) .nav-mobile > a,
+.site-header:not(.menu-open) .nav-mobile > .mobile-nav-group {
+  transition-delay: 0s;
+  transition-duration: .16s;
+}
+
+/* Mobile nav link typography */
+.nav-mobile > a {
+  display: block;
+  font-size: var(--nav-mobile-font-size);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: .007em;
+  text-align: left;
+  padding: 8px var(--nav-padding-inline);
+}
+
+@media screen and (min-width: 850px) {
+  .mobile-nav-wrap {
+    display: none;
+  }
+}

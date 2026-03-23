@@ -1,0 +1,12 @@
+---
+import { navItems } from '../data/navData';
+---
+
+<div id="main-menu" class="nav-links nav-desktop">
+  {navItems.map((item) => (
+    <a
+      href={item.href}
+      {...(item.groups?.length ? { 'data-flyout': item.label.toLowerCase() } : {})}
+    >{item.label}</a>
+  ))}
+</div>
