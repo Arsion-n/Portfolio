@@ -1,60 +1,149 @@
 ---
-import { navItems, getFlatChildren } from '../data/navData';
+import { localizeHref } from '../utils/locale';
+
+const pathname = Astro.url.pathname;
+const lh = (href: string) => localizeHref(pathname, href);
+
+const footerColumns = [
+  {
+    groups: [
+      {
+        title: 'Explore',
+        links: [
+          { label: 'Projects', href: '/projects/' },
+          { label: 'Featured Work', href: '/projects/' },
+        ],
+      },
+      {
+        title: 'Portfolio',
+        links: [
+          { label: 'Case Studies', href: '/projects/' },
+          { label: 'Design Notes', href: '/projects/' },
+        ],
+      },
+    ],
+  },
+  {
+    groups: [
+      {
+        title: 'Account',
+        links: [
+          { label: 'About Me', href: '/about/' },
+          { label: 'CV (Coming Soon)', href: '/about/' },
+        ],
+      },
+      {
+        title: 'Updates',
+        links: [
+          { label: 'Latest News (Soon)', href: '/' },
+          { label: 'Announcements (Soon)', href: '/' },
+        ],
+      },
+    ],
+  },
+  {
+    groups: [
+      {
+        title: 'Studio',
+        links: [
+          { label: 'Contact', href: '#site-footer' },
+          { label: 'Work Process', href: '/about/' },
+        ],
+      },
+      {
+        title: 'Support',
+        links: [
+          { label: 'FAQ (Soon)', href: '/' },
+          { label: 'Collaboration', href: '/about/' },
+        ],
+      },
+    ],
+  },
+  {
+    groups: [
+      {
+        title: 'Business',
+        links: [
+          { label: 'Commercial Projects', href: '/projects/' },
+          { label: 'Partnerships', href: '/about/' },
+        ],
+      },
+      {
+        title: 'Education',
+        links: [
+          { label: 'Academic Works', href: '/projects/' },
+          { label: 'Learning Journey', href: '/about/' },
+        ],
+      },
+      {
+        title: 'Public Sector',
+        links: [
+          { label: 'Urban Concepts', href: '/projects/' },
+          { label: 'Community Design', href: '/projects/' },
+        ],
+      },
+    ],
+  },
+  {
+    groups: [
+      {
+        title: 'Values',
+        links: [
+          { label: 'Design Principles', href: '/about/' },
+          { label: 'Sustainability', href: '/about/' },
+        ],
+      },
+      {
+        title: 'About Arison',
+        links: [
+          { label: 'Story', href: '/about/' },
+          { label: 'Career Path', href: '/about/' },
+        ],
+      },
+    ],
+  },
+];
 ---
 
 <footer id="site-footer" role="contentinfo">
   <div class="footer-content">
-    <nav class="footer-directory" aria-label="Site directory">
-      <div class="footer-directory-column">
-        <div class="footer-directory-section">
-          <h3 class="footer-section-title">Projects</h3>
-          <ul class="footer-section-list">
-            {getFlatChildren(navItems[0]).map((child) => (
-              <li><a href={child.href}>{child.label}</a></li>
+    <nav class="footer-nav" aria-label="Site directory">
+      <div class="footer-directory footer-directory--desktop">
+        {footerColumns.map((column) => (
+          <div class="footer-directory-column">
+            {column.groups.map((group) => (
+              <div class="footer-directory-section">
+                <h3 class="footer-section-title">{group.title}</h3>
+                <ul class="footer-section-list">
+                  {group.links.map((link) => (
+                    <li><a href={lh(link.href)}>{link.label}</a></li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
-        </div>
+          </div>
+        ))}
       </div>
-      <div class="footer-directory-column">
-        <div class="footer-directory-section">
-          <h3 class="footer-section-title">About</h3>
-          <ul class="footer-section-list">
-            {getFlatChildren(navItems[1]).map((child) => (
-              <li><a href={child.href}>{child.label}</a></li>
+      <div class="footer-directory footer-directory--mobile">
+        {footerColumns.map((column) => (
+          <div class="footer-directory-column">
+            {column.groups.map((group) => (
+              <details class="footer-directory-section footer-accordion">
+                <summary class="footer-section-title">
+                  <span>{group.title}</span>
+                  <svg class="footer-section-chevron" viewBox="0 0 11 6" aria-hidden="true">
+                    <polyline points="10.075 0.675 5.5 5.323 0.925 0.675" />
+                  </svg>
+                </summary>
+                <ul class="footer-section-list">
+                  {group.links.map((link) => (
+                    <li><a href={lh(link.href)}>{link.label}</a></li>
+                  ))}
+                </ul>
+              </details>
             ))}
-          </ul>
-        </div>
-      </div>
-      <div class="footer-directory-column">
-        <div class="footer-directory-section">
-          <h3 class="footer-section-title">Contact</h3>
-          <ul class="footer-section-list footer-contact-list">
-            <li>
-              <a href="tel:+85254057642">
-                <svg class="footer-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.01394 6.87134C1.34749 10.0618 3.85967 13.8597 7.01471 17.0147C10.1698 20.1698 13.9676 22.682 17.1581 22.0155C19.782 21.4674 21.1215 20.0697 21.8754 18.8788C22.1355 18.4678 22.0042 17.9344 21.6143 17.6436L17.9224 14.8897C17.5243 14.5928 16.9685 14.633 16.6174 14.9842L14.6577 16.9438C14.6577 16.9438 12.7529 16.3246 10.2288 13.8006C7.70482 11.2766 7.08564 9.37175 7.08564 9.37175L9.04529 7.4121C9.39648 7.06091 9.43671 6.5052 9.13975 6.10709L6.38585 2.4151C6.09505 2.02525 5.56163 1.89395 5.15068 2.15407C3.9597 2.90794 2.56203 4.24747 2.01394 6.87134Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                (+852) 5405 7642
-              </a>
-            </li>
-            <li>
-              <a href="https://wa.me/85254057642" target="_blank" rel="noopener noreferrer">
-                <svg class="footer-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.50002 12C3.50002 7.30558 7.3056 3.5 12 3.5C16.6944 3.5 20.5 7.30558 20.5 12C20.5 16.6944 16.6944 20.5 12 20.5C10.3278 20.5 8.77127 20.0182 7.45798 19.1861C7.21357 19.0313 6.91408 18.9899 6.63684 19.0726L3.75769 19.9319L4.84173 17.3953C4.96986 17.0955 4.94379 16.7521 4.77187 16.4751C3.9657 15.176 3.50002 13.6439 3.50002 12ZM12 1.5C6.20103 1.5 1.50002 6.20101 1.50002 12C1.50002 13.8381 1.97316 15.5683 2.80465 17.0727L1.08047 21.107C0.928048 21.4637 0.99561 21.8763 1.25382 22.1657C1.51203 22.4552 1.91432 22.5692 2.28599 22.4582L6.78541 21.1155C8.32245 21.9965 10.1037 22.5 12 22.5C17.799 22.5 22.5 17.799 22.5 12C22.5 6.20101 17.799 1.5 12 1.5ZM14.2925 14.1824L12.9783 15.1081C12.3628 14.7575 11.6823 14.2681 10.9997 13.5855C10.2901 12.8759 9.76402 12.1433 9.37612 11.4713L10.2113 10.7624C10.5697 10.4582 10.6678 9.94533 10.447 9.53028L9.38284 7.53028C9.23954 7.26097 8.98116 7.0718 8.68115 7.01654C8.38113 6.96129 8.07231 7.046 7.84247 7.24659L7.52696 7.52195C6.76823 8.18414 6.3195 9.2723 6.69141 10.3741C7.07698 11.5163 7.89983 13.314 9.58552 14.9997C11.3991 16.8133 13.2413 17.5275 14.3186 17.8049C15.1866 18.0283 16.008 17.7288 16.5868 17.2572L17.1783 16.7752C17.4313 16.5691 17.5678 16.2524 17.544 15.9269C17.5201 15.6014 17.3389 15.308 17.0585 15.1409L15.3802 14.1409C15.0412 13.939 14.6152 13.9552 14.2925 14.1824Z" fill="currentColor"/></svg>
-                WhatsApp
-              </a>
-            </li>
-            <li>
-              <a href="mailto:arison@arison-n.com">
-                <svg class="footer-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 17.5V6.5C3 5.94772 3.44772 5.5 4 5.5H12H20C20.5523 5.5 21 5.94772 21 6.5V17.5C21 18.0523 20.5523 18.5 20 18.5H4C3.44772 18.5 3 18.0523 3 17.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M3 6L12 12L21 6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-                arison@arison-n.com
-              </a>
-            </li>
-            <li>
-              <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">
-                <svg class="footer-icon" viewBox="0 0 382 382" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403c0-5.554,4.502-10.056,10.056-10.056h42.806c5.554,0,10.056,4.502,10.056,10.056V329.844z M86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432z M341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73c-5.106,0-9.246-4.14-9.246-9.246v-84.168c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593c0-5.106,4.14-9.246,9.246-9.246h44.426c5.106,0,9.246,4.14,9.246,9.246v15.655c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472L341.91,330.654L341.91,330.654z" fill="currentColor"/></svg>
-                LinkedIn
-              </a>
-            </li>
-          </ul>
-        </div>
+          </div>
+        ))}
       </div>
     </nav>
 

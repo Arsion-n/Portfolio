@@ -1,5 +1,11 @@
 ---
 import { navItems, getFlatChildren } from '../data/navData';
+import { localizeHref, enSwitchHref, zhSwitchHref } from '../utils/locale';
+
+const pathname = Astro.url.pathname;
+const enHref = enSwitchHref(pathname);
+const zhHref = zhSwitchHref(pathname);
+const lh = (href: string) => localizeHref(pathname, href);
 ---
 
 <div id="mobile-menu" class="nav-links nav-mobile">
@@ -14,12 +20,28 @@ import { navItems, getFlatChildren } from '../data/navData';
         </button>
         <div class="mobile-nav-submenu">
           {getFlatChildren(item).map((child) => (
-            <a href={child.href}>{child.label}</a>
+            <a href={lh(child.href)}>{child.label}</a>
           ))}
         </div>
       </div>
     ) : (
-      <a href={item.href} style={`--item-index: ${index}`}>{item.label}</a>
+      <a href={lh(item.href)} style={`--item-index: ${index}`}>{item.label}</a>
     )
   )}
+  <div class="mobile-nav-group" style={`--item-index: ${navItems.length}`}>
+    <button class="mobile-nav-trigger mobile-nav-language-trigger" aria-expanded="false" aria-label="Language">
+      <span class="mobile-nav-language-label">
+        <svg class="mobile-nav-language-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path fill="currentColor" d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10M9.254 20.047a8 8 0 0 1-.768-1.378c-.404-.91-.722-1.985-.935-3.169h-3.3a8.53 8.53 0 0 0 5.003 4.547m.603-1.988c.336.757.718 1.324 1.103 1.69.382.364.732.501 1.04.501s.658-.137 1.04-.5c.385-.367.767-.934 1.103-1.69.321-.723.588-1.59.78-2.56H9.076c.192.97.459 1.837.78 2.56ZM8.75 12q.001 1.038.103 2h6.294q.102-.962.103-2-.001-1.038-.103-2H8.853q-.102.962-.103 2m-1.405-2H3.737a8.5 8.5 0 0 0-.237 2c0 .689.082 1.359.237 2h3.608a21 21 0 0 1 0-4m1.732-1.5h5.845c-.19-.97-.458-1.837-.779-2.56-.336-.756-.718-1.323-1.103-1.69-.382-.363-.732-.5-1.04-.5s-.658.137-1.04.5c-.385.367-.767.934-1.103 1.69-.321.723-.588 1.59-.78 2.56m7.577 1.5a20.7 20.7 0 0 1 0 4h3.61a8.5 8.5 0 0 0 .236-2 8.5 8.5 0 0 0-.237-2zm3.094-1.5a8.53 8.53 0 0 0-5.002-4.547c.287.408.543.873.768 1.378.404.91.722 1.985.935 3.169h3.3Zm-12.197 0c.213-1.184.531-2.26.935-3.169.225-.505.48-.97.768-1.378A8.53 8.53 0 0 0 4.252 8.5zm7.963 10.169c-.225.505-.48.97-.768 1.378a8.53 8.53 0 0 0 5.002-4.547h-3.3c-.212 1.184-.53 2.26-.934 3.169"></path>
+        </svg>
+      </span>
+      <svg class="mobile-nav-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="mobile-nav-submenu">
+      <a href={enHref}>English</a>
+      <a href={zhHref}>繁體中文</a>
+    </div>
+  </div>
 </div>

@@ -57,7 +57,7 @@
 .flyout-heading {
   font-size: 12px;
   font-weight: 400;
-  color: rgba(0, 0, 0, .56);
+  color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: .04em;
   margin: 0 0 14px;

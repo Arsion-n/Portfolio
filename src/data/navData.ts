@@ -40,14 +40,16 @@ export const navItems: NavItem[] = [
         elevated: true,
         items: [
           { label: 'Introduction', href: '/about/#introduction' },
+          { label: 'Education', href: '/about/#education' },
           { label: 'Experience', href: '/about/#experience' },
           { label: 'Skills', href: '/about/#skills' },
+          { label: 'Interests', href: '/about/#interests' },
         ],
       },
       {
         heading: 'Quick Links',
         items: [
-          { label: 'CV Download', href: '/about/cv/' },
+          { label: 'CV Download', href: '/about/#cv-download' },
         ],
       },
     ],

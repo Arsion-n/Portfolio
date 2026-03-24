@@ -1,0 +1,94 @@
+---
+import Layout from '../../../layouts/Layout.astro'
+
+const localNav = {
+  title: '關於',
+  items: [
+    { label: '自我介紹', href: '#introduction' },
+    { label: '學歷', href: '#education' },
+    { label: '經歷', href: '#experience' },
+    { label: '技能', href: '#skills' },
+    { label: '興趣', href: '#interests' },
+    { label: '履歷下載', href: '#cv-download' },
+  ],
+};
+---
+
+<Layout
+  lang="zh-HK"
+  title="關於 | Arison N."
+  description="Arison N. 關於頁 – 現居香港，主修土木工程，專注於室內設計與空間敘事。"
+  localNav={localNav}
+>
+  <section id="introduction" class="about-section">
+    <h1 class="about-hero-title">關於 Arison N.</h1>
+    <p class="about-hero-subtitle">
+      現居香港，主修土木工程，並專注於室內設計與空間敘事。
+    </p>
+  </section>
+
+  <section id="education" class="about-section">
+    <h2 class="about-section-title">學歷</h2>
+    <p class="about-section-body">
+      學術背景與學歷資料將在此詳列。
+    </p>
+  </section>
+
+  <section id="experience" class="about-section">
+    <h2 class="about-section-title">經歷</h2>
+    <p class="about-section-body">
+      這裡將整理專案亮點、設計流程與代表作品。
+    </p>
+  </section>
+
+  <section id="skills" class="about-section">
+    <h2 class="about-section-title">技能</h2>
+    <p class="about-section-body">
+      這裡將展示軟體工具、技術能力與跨領域整合優勢。
+    </p>
+  </section>
+
+  <section id="interests" class="about-section">
+    <h2 class="about-section-title">興趣</h2>
+    <p class="about-section-body">
+      個人興趣與創意追求將在此分享。
+    </p>
+  </section>
+
+  <section id="cv-download" class="about-section about-section--last">
+    <h2 class="about-section-title">履歷下載</h2>
+    <p class="about-section-body">
+      可下載版本的履歷將在此提供。
+    </p>
+  </section>
+</Layout>
+
+<style>
+  .about-section {
+    padding: 56px 20px 48px;
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  .about-section--last {
+    padding-bottom: 96px;
+  }
+  .about-hero-title {
+    margin: 0;
+    font-size: clamp(34px, 5.5vw, 56px);
+    line-height: 1.08;
+  }
+  .about-hero-subtitle {
+    margin: 14px 0 0;
+    font-size: clamp(18px, 2.4vw, 24px);
+    line-height: 1.3;
+    color: var(--color-text-secondary);
+  }
+  .about-section-title {
+    margin: 0 0 10px;
+    font-size: 28px;
+  }
+  .about-section-body {
+    margin: 0;
+    color: var(--color-text-secondary);
+  }
+</style>

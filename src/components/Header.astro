@@ -3,11 +3,18 @@ import { navItems } from '../data/navData';
 import Menu from './Menu.astro';
 import Navigation from './Navigation.astro';
 import MobileNavigation from './MobileNavigation.astro';
+import { localizeHref, homeHrefFromPath, enSwitchHref, zhSwitchHref } from '../utils/locale';
+
+const pathname = Astro.url.pathname;
+const enHref = enSwitchHref(pathname);
+const zhHref = zhSwitchHref(pathname);
+const homeHref = homeHrefFromPath(pathname);
+const lh = (href: string) => localizeHref(pathname, href);
 ---
 <header class="site-header">
   <div class="header-inner">
     <nav class="site-nav">
-      <a href="/" class="site-brand">Arison N.</a>
+      <a href={homeHref} class="site-brand">Arison N.</a>
       <div class="site-nav-right">
         <Menu />
         <Navigation />
@@ -28,7 +35,7 @@ import MobileNavigation from './MobileNavigation.astro';
             <ul class="flyout-list" aria-label={group.heading}>
               {group.items.map((child, idx) => (
                 <li style={`--flyout-item-idx: ${idx + 1}`}>
-                  <a href={child.href}>{child.label}</a>
+                  <a href={lh(child.href)}>{child.label}</a>
                 </li>
               ))}
             </ul>
@@ -37,6 +44,21 @@ import MobileNavigation from './MobileNavigation.astro';
       </div>
     </div>
   ))}
+  <div class="flyout-panel" id="flyout-language">
+    <div class="flyout-inner">
+      <div class="flyout-group flyout-group-elevated">
+        <h2 class="flyout-heading">Language</h2>
+        <ul class="flyout-list" aria-label="Language">
+          <li style="--flyout-item-idx: 1">
+            <a href={enHref}>English</a>
+          </li>
+          <li style="--flyout-item-idx: 2">
+            <a href={zhHref}>繁體中文</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="mobile-nav-curtain"></div>
 

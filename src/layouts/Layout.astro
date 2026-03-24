@@ -2,41 +2,83 @@
 import '../styles/global.css'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
+import LocalNav from '../components/LocalNav.astro'
+import { alternatePageUrl } from '../utils/locale'
+
+interface LocalNavItem {
+  label: string;
+  href: string;
+}
+
+interface LocalNavConfig {
+  title: string;
+  items: LocalNavItem[];
+}
 
 interface Props {
   title?: string;
   description?: string;
+  lang?: string;
+  ogImage?: string;
+  localNav?: LocalNavConfig;
 }
 
 const {
   title = 'Arison N. | Portfolio',
   description = 'Arison N. – Civil Engineering Student & Interior Designer. View my projects, experience, and skills.',
+  lang = 'en-HK',
+  ogImage = '/favicon.svg',
+  localNav,
 } = Astro.props;
+
+const siteUrl = 'https://arison-n.com';
+const pathname = Astro.url.pathname;
+const canonicalUrl = new URL(pathname, siteUrl).toString();
+const imageUrl = new URL(ogImage, siteUrl).toString();
+const ogLocale = lang.replace('-', '_');
+const isHomePath = pathname === '/' || pathname === '/en/' || pathname === '/zh/';
+const languageAlternates = [
+  { hreflang: 'en-HK', href: alternatePageUrl(siteUrl, pathname, 'en') },
+  { hreflang: 'zh-HK', href: alternatePageUrl(siteUrl, pathname, 'zh') },
+];
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
-		<link rel="canonical" href={Astro.url.href} />
+		<link rel="canonical" href={canonicalUrl} />
+		{languageAlternates.map((alternate) => (
+			<link rel="alternate" hreflang={alternate.hreflang} href={alternate.href} />
+		))}
+		<link rel="alternate" hreflang="x-default" href={`${siteUrl}/en/`} />
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content={Astro.url.href} />
+		<meta property="og:url" content={canonicalUrl} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
+		<meta property="og:site_name" content="Arison N." />
+		<meta property="og:locale" content={ogLocale} />
+		<meta property="og:image" content={imageUrl} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={imageUrl} />
 		<title>{title}</title>
 	</head>
-	<body>
+	<body class:list={[isHomePath && 'is-home']}>
 		<Header />
+		{localNav && <LocalNav title={localNav.title} items={localNav.items} />}
 		<main>
 			<slot />
 		</main>
 		<Footer />
 		<script>
 			import "../scripts/menu.js";
+			import "../scripts/local-nav.js";
 		</script>
 	</body>
 </html>

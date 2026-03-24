@@ -1,0 +1,95 @@
+---
+interface LocalNavItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  title: string;
+  items: LocalNavItem[];
+}
+
+const { title, items } = Astro.props;
+---
+
+<nav class="localnav css-sticky" data-localnav role="navigation" aria-label={`${title} local navigation`}>
+  <div class="localnav-wrapper">
+    <div class="localnav-background"></div>
+    <div class="localnav-inner">
+      <div class="localnav-title">
+        <a href={Astro.url.pathname}>{title}</a>
+      </div>
+      <div class="localnav-menu">
+        <div class="localnav-menu-tray" id="localnav-menu-tray" aria-hidden="true">
+          <ul class="localnav-menu-items">
+            {items.map((item, idx) => (
+              <li class="localnav-menu-item" style={`--localnav-item-idx: ${idx}`}>
+                <a href={item.href} class="localnav-menu-link">{item.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="localnav-actions">
+          <div class="localnav-action localnav-action-menucta" aria-hidden="true">
+            <button
+              type="button"
+              class="localnav-menucta"
+              data-localnav-toggle
+              aria-expanded="false"
+              aria-controls="localnav-menu-tray"
+            >
+              <span class="visuallyhidden">Toggle local navigation</span>
+              <span class="localnav-menucta-chevron">
+                <svg viewBox="0 0 16 9" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <polyline
+                    shape-rendering="geometricPrecision"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    vector-effect="non-scaling-stroke"
+                    stroke-linejoin="round"
+                    fill="none"
+                    fill-rule="evenodd"
+                    points="15.265 .835 8 8.167 .735 .835"
+                  >
+                    <animate
+                      id="localnav-chevron-expand"
+                      attributeName="points"
+                      values="15.265 .835 8 8.167 .735 .835;
+                              15.25 4.5 8 4.5 .75 4.5;
+                              15.265 8.165 8 .835 .735 8.165"
+                      dur="320ms"
+                      begin="indefinite"
+                      fill="freeze"
+                      keyTimes="0;0.5;1"
+                      calcMode="spline"
+                      keySplines="0.12, 0, 0.38, 0;
+                                  0.2, 1, 0.68, 1"
+                    />
+                    <animate
+                      id="localnav-chevron-collapse"
+                      attributeName="points"
+                      values="15.265 8.165 8 .835 .735 8.165;
+                              15.25 4.5 8 4.5 .75 4.5;
+                              15.265 .835 8 8.167 .735 .835"
+                      dur="320ms"
+                      begin="indefinite"
+                      fill="freeze"
+                      keyTimes="0;0.5;1"
+                      calcMode="spline"
+                      keySplines="0.2, 0, 0.68, 0;
+                                  0.2, 1, 0.68, 1"
+                    />
+                  </polyline>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style is:global>
+  @import '../styles/localnav.css';
+</style>

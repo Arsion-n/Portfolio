@@ -1,0 +1,94 @@
+---
+import Layout from '../../../layouts/Layout.astro'
+
+const localNav = {
+  title: 'About',
+  items: [
+    { label: 'Introduction', href: '#introduction' },
+    { label: 'Education', href: '#education' },
+    { label: 'Experience', href: '#experience' },
+    { label: 'Skills', href: '#skills' },
+    { label: 'Interests', href: '#interests' },
+    { label: 'CV Download', href: '#cv-download' },
+  ],
+};
+---
+
+<Layout
+  lang="en-HK"
+  title="About | Arison N."
+  description="About Arison N. – Civil Engineering student & Interior Designer based in Hong Kong."
+  localNav={localNav}
+>
+  <section id="introduction" class="about-section">
+    <h1 class="about-hero-title">About Arison N.</h1>
+    <p class="about-hero-subtitle">
+      Civil Engineering student and Interior Designer based in Hong Kong.
+    </p>
+  </section>
+
+  <section id="education" class="about-section">
+    <h2 class="about-section-title">Education</h2>
+    <p class="about-section-body">
+      Academic background and qualifications will be detailed here.
+    </p>
+  </section>
+
+  <section id="experience" class="about-section">
+    <h2 class="about-section-title">Experience</h2>
+    <p class="about-section-body">
+      Project highlights, design process, and selected works will be showcased here.
+    </p>
+  </section>
+
+  <section id="skills" class="about-section">
+    <h2 class="about-section-title">Skills</h2>
+    <p class="about-section-body">
+      Technical skills, software tools, and interdisciplinary strengths will be listed here.
+    </p>
+  </section>
+
+  <section id="interests" class="about-section">
+    <h2 class="about-section-title">Interests</h2>
+    <p class="about-section-body">
+      Personal interests and creative pursuits will be shared here.
+    </p>
+  </section>
+
+  <section id="cv-download" class="about-section about-section--last">
+    <h2 class="about-section-title">CV Download</h2>
+    <p class="about-section-body">
+      A downloadable version of the CV will be available here.
+    </p>
+  </section>
+</Layout>
+
+<style>
+  .about-section {
+    padding: 56px 20px 48px;
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  .about-section--last {
+    padding-bottom: 96px;
+  }
+  .about-hero-title {
+    margin: 0;
+    font-size: clamp(34px, 5.5vw, 56px);
+    line-height: 1.08;
+  }
+  .about-hero-subtitle {
+    margin: 14px 0 0;
+    font-size: clamp(18px, 2.4vw, 24px);
+    line-height: 1.3;
+    color: var(--color-text-secondary);
+  }
+  .about-section-title {
+    margin: 0 0 10px;
+    font-size: 28px;
+  }
+  .about-section-body {
+    margin: 0;
+    color: var(--color-text-secondary);
+  }
+</style>

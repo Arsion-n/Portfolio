@@ -21,8 +21,8 @@
 
 html {
   background-color: #fff;
-  color: #191919;
-  font-family: 'Urbanist', sans-serif;
+  color: var(--color-text);
+  font-family: var(--font-sans);
 }
 
 body {
@@ -33,7 +33,7 @@ body {
 }
 
 header {
-  position: sticky;
+  position: relative;
   top: 0;
   width: 100%;
   min-height: var(--nav-height);
@@ -41,6 +41,10 @@ header {
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
   z-index: 100;
+}
+
+body.is-home header {
+  position: sticky;
 }
 
 .visuallyhidden {

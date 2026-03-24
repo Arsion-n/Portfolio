@@ -7,4 +7,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://arison-n.com',
   integrations: [sitemap()],
+  redirects: {
+    '/': '/en/',
+  },
 });

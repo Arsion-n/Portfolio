@@ -3,7 +3,7 @@
 :root {
   --gutter-color: #fff;
   --gutter-width: 12px;
-  --content-height-hero: calc(100svh - var(--nav-height));
+  --content-height-hero: 580px;
   --content-height-unit: 580px;
   --content-height-promo: 520px;
 }
@@ -18,78 +18,111 @@
 }
 
 .showcase-section {
+  width: 100%;
   position: relative;
-  overflow: hidden;
-  text-align: center;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /* ── Unit wrapper ── */
 
 .unit-wrapper {
+  height: var(--content-height-unit);
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
-  align-items: center;
-  min-height: var(--content-height-unit);
-  padding: 64px 24px 48px;
   overflow: hidden;
-}
-
-.unit-wrapper.theme-dark {
-  background-color: #000;
-  color: #f5f5f7;
+  background: #f5f5f7;
 }
 
 .unit-wrapper.theme-light {
-  background-color: #f5f5f7;
-  color: #1d1d1f;
+  background: #f5f5f7;
+  color: var(--color-text);
 }
 
-/* ── Hero (taller, centered vertically) ── */
+/* ── Full-area link overlay (Apple unit-link) ── */
+
+.unit-link {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  text-decoration: none;
+}
+
+.unit-link:hover {
+  text-decoration: none;
+}
+
+.unit-link:focus {
+  outline-offset: -3px;
+}
+
+html.ie .unit-link:focus {
+  top: 3px;
+  left: 3px;
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+}
+
+/* ── Hero (taller, top-aligned copy) ── */
 
 .unit-wrapper.hero {
-  min-height: var(--content-height-hero);
-  justify-content: center;
-  padding-top: 0;
-  padding-bottom: 0;
+  height: var(--content-height-hero);
+  justify-content: flex-start;
 }
 
 /* ── Copy ── */
 
 .unit-copy {
   position: relative;
-  z-index: 2;
-  max-width: 680px;
+  -webkit-box-flex: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  z-index: 4;
+  pointer-events: none;
+  text-align: center;
+  padding-top: 47px;
 }
 
+.unit-copy a {
+  pointer-events: all;
+}
+
+/* Hero headline — matches Apple .headline in heroes */
 .unit-headline {
-  font-size: clamp(40px, 7vw, 64px);
-  font-weight: 700;
-  letter-spacing: -.015em;
-  line-height: 1.05;
+  font-size: 56px;
+  font-weight: 600;
+  letter-spacing: -.005em;
+  line-height: 1.07143;
   margin: 0;
 }
 
+/* Hero subhead — matches Apple .subhead in heroes */
 .unit-subhead {
-  font-size: clamp(17px, 2.4vw, 21px);
+  font-size: 28px;
   font-weight: 400;
-  line-height: 1.4;
-  margin: 12px 0 0;
-  color: rgba(0, 0, 0, .56);
+  letter-spacing: .007em;
+  line-height: 1.14286;
+  margin: 6px 0 0;
+  color: var(--color-text);
 }
 
-.theme-dark .unit-subhead {
-  color: rgba(255, 255, 255, .56);
-}
-
-/* ── CTA buttons ── */
+/* ── CTA buttons — matches Apple .button .button-elevated ── */
 
 .cta-links {
-  display: flex;
-  gap: 16px;
+  display: inline-flex;
+  gap: 18px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 24px;
+  margin-top: 19px;
 }
 
 .btn {
@@ -99,53 +132,35 @@
   border-radius: 980px;
   font-size: 17px;
   font-weight: 400;
-  letter-spacing: -.01em;
-  line-height: 1.18;
-  padding: 11px 22px;
+  letter-spacing: -.022em;
+  line-height: 1.17648;
+  padding: 11px 21px;
+  border: 1px solid transparent;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
   transition: background .16s ease, color .16s ease, border-color .16s ease;
 }
 
+/* Primary — matches Apple .button (default blue fill) */
 .btn-primary {
   background: #0071e3;
   color: #fff;
-  border: 2px solid transparent;
 }
 
 .btn-primary:hover {
   background: #0077ed;
 }
 
+/* Secondary — matches Apple .button-tertiary */
 .btn-secondary {
   background: transparent;
-  color: #06c;
-  border: 2px solid #06c;
+  color: var(--color-link);
+  border-color: var(--color-link);
 }
 
 .btn-secondary:hover {
-  background: #0077ed;
-  color: #fff;
-  border-color: transparent;
-}
-
-.theme-dark .btn-primary {
-  background: #f5f5f7;
-  color: #000;
-}
-
-.theme-dark .btn-primary:hover {
-  background: #fff;
-}
-
-.theme-dark .btn-secondary {
-  color: #2997ff;
-  border-color: #2997ff;
-}
-
-.theme-dark .btn-secondary:hover {
-  background: #0077ed;
+  background: var(--color-link-hover);
   color: #fff;
   border-color: transparent;
 }
@@ -153,11 +168,14 @@
 /* ── Image area ── */
 
 .unit-image-wrapper {
-  position: relative;
   z-index: 1;
+  overflow: visible;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
   width: 100%;
   max-width: 900px;
-  margin: 40px auto 0;
+  margin: 0 auto;
 }
 
 .unit-image {
@@ -167,11 +185,7 @@
   background: linear-gradient(135deg, rgba(0,0,0,.04) 0%, rgba(0,0,0,.08) 100%);
 }
 
-.theme-dark .unit-image {
-  background: linear-gradient(135deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.02) 100%);
-}
-
-/* ── Promo grid (two-column cards) ── */
+/* ── Promo grid (two-column cards) — matches Apple promos module ── */
 
 .promo-grid {
   display: grid;
@@ -192,34 +206,28 @@
   color: inherit;
 }
 
-.promo-card.theme-dark {
-  background-color: #1d1d1f;
-  color: #f5f5f7;
-}
-
 .promo-card.theme-light {
   background-color: #f5f5f7;
-  color: #1d1d1f;
+  color: var(--color-text);
 }
 
+/* Promo headline — matches Apple .headline in promos */
 .promo-headline {
-  font-size: clamp(28px, 4vw, 40px);
-  font-weight: 700;
-  letter-spacing: -.02em;
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: 0em;
   line-height: 1.1;
   margin: 0;
 }
 
+/* Promo subhead — matches Apple .subhead in promos */
 .promo-subhead {
-  font-size: clamp(14px, 1.8vw, 17px);
+  font-size: 21px;
   font-weight: 400;
-  line-height: 1.4;
-  margin: 8px 0 0;
-  color: rgba(0, 0, 0, .56);
-}
-
-.promo-card.theme-dark .promo-subhead {
-  color: rgba(255, 255, 255, .56);
+  letter-spacing: .011em;
+  line-height: 1.19048;
+  margin: 4px 0 0;
+  color: var(--color-text-secondary);
 }
 
 .promo-image {
@@ -231,16 +239,78 @@
   background: linear-gradient(135deg, rgba(0,0,0,.04) 0%, rgba(0,0,0,.08) 100%);
 }
 
-.promo-card.theme-dark .promo-image {
-  background: linear-gradient(135deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.02) 100%);
+/* ── Responsive — Tablet (735–1068px) ── */
+
+@media screen and (max-width: 1068px) and (min-width: 850px) {
+  .unit-wrapper.hero {
+    height: 570px;
+  }
+
+  .unit-copy {
+    padding-top: 53px;
+  }
+
+  .unit-headline {
+    font-size: 48px;
+    line-height: 1.08349;
+    letter-spacing: -.002em;
+  }
+
+  .unit-subhead {
+    font-size: 24px;
+    line-height: 1.16667;
+    letter-spacing: .009em;
+    margin-top: 5px;
+  }
+
+  .cta-links {
+    margin-top: 18px;
+  }
+
+  .promo-headline {
+    font-size: 32px;
+    line-height: 1.125;
+    letter-spacing: .002em;
+  }
 }
 
-/* ── Responsive ── */
+/* ── Responsive — Mobile (≤849px) ── */
 
 @media screen and (max-width: 849px) {
   .unit-wrapper {
-    min-height: 480px;
-    padding: 48px 24px 40px;
+    height: 480px;
+  }
+
+  .unit-wrapper.hero {
+    height: 500px;
+  }
+
+  .unit-copy {
+    padding-top: 37px;
+  }
+
+  .unit-headline {
+    font-size: 32px;
+    line-height: 1.125;
+    letter-spacing: .004em;
+  }
+
+  .unit-subhead {
+    font-size: 19px;
+    line-height: 1.21053;
+    letter-spacing: .012em;
+    margin-top: 4px;
+  }
+
+  .cta-links {
+    margin-top: 17px;
+  }
+
+  .btn {
+    font-size: 14px;
+    line-height: 1.42859;
+    letter-spacing: -.016em;
+    padding: 7px 15px;
   }
 
   .promo-grid {
@@ -249,5 +319,27 @@
 
   .promo-card {
     min-height: 420px;
+  }
+
+  .promo-headline {
+    font-size: 28px;
+    line-height: 1.14286;
+  }
+
+  .promo-subhead {
+    font-size: 17px;
+    line-height: 1.23529;
+  }
+}
+
+/* ── Large + tall viewport ── */
+
+@media screen and (min-width: 1069px) and (min-height: 776px) {
+  .unit-wrapper.hero {
+    height: 692px;
+  }
+
+  .unit-copy {
+    padding-top: 55px;
   }
 }
