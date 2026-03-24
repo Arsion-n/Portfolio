@@ -1,2 +1,0 @@
-# Cloudflare Pages: edge redirect (HTTP 301). Astro also emits / → /en/ in index.html as fallback.
-/ /en/ 301
