@@ -3,7 +3,7 @@
 :root {
   --nav-height: 50px;
   --nav-max-width: 1100px;
-  --nav-padding-inline: 25px;
+  --nav-padding-inline: 15px;
   --nav-color: rgba(0, 0, 0, .8);
   --nav-color-hover: #000;
   --nav-bg: rgba(255, 255, 255, .8);
@@ -32,21 +32,6 @@ body {
   line-height: 1.5;
 }
 
-header {
-  position: relative;
-  top: 0;
-  width: 100%;
-  min-height: var(--nav-height);
-  background-color: var(--nav-bg);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  backdrop-filter: saturate(180%) blur(20px);
-  z-index: 100;
-}
-
-body.is-home header {
-  position: sticky;
-}
-
 .visuallyhidden {
   position: absolute;
   -webkit-clip-path: inset(0px 0px 99.9% 99.9%);
@@ -56,53 +41,4 @@ body.is-home header {
   width: 1px;
   padding: 0;
   border: 0;
-}
-
-/* ── Nav links ── */
-
-.nav-links a {
-  text-decoration: none;
-  font-size: var(--nav-font-size);
-  font-weight: 400;
-  letter-spacing: -.01em;
-  color: var(--nav-color);
-  transition: color .32s var(--nav-easing);
-  white-space: nowrap;
-}
-
-.nav-links a:hover,
-.nav-links a:focus-visible {
-  color: var(--nav-color-hover);
-}
-
-.nav-links a:focus-visible {
-  outline: 2px solid #0071e3;
-  outline-offset: -4px;
-}
-
-.nav-links a:focus:not(:focus-visible) {
-  outline: none;
-}
-
-.nav-desktop {
-  display: none;
-}
-
-@media screen and (min-width: 850px) {
-  .nav-desktop {
-    margin-left: 5em;
-    display: flex;
-    align-items: center;
-  }
-
-  .nav-desktop > a {
-    display: flex;
-    align-items: center;
-    height: var(--nav-height);
-    padding: 0 20px;
-  }
-
-  .menu-btn {
-    display: none;
-  }
 }

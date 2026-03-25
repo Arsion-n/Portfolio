@@ -1,0 +1,216 @@
+/* ── About page: Hero section (Apple Leadership layout) ── */
+
+.about-hero {
+  position: relative;
+  height: 336px;
+}
+
+.about-hero-photo-container {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  background: #f5f5f7;
+}
+
+.about-hero-photo {
+  margin: 0 auto;
+  width: 980px;
+  height: 336px;
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.about-hero-photo img {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 381px;
+  width: 489px;
+  height: 336px;
+  object-fit: cover;
+}
+
+.about-hero-inner {
+  width: 980px;
+  margin: 0 auto;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.about-hero-headlines {
+  position: relative;
+  z-index: 1;
+  width: 50%;
+}
+
+.about-hero-title {
+  margin: 0 0 11px;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0em;
+}
+
+.about-hero-role {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.19048;
+  letter-spacing: .011em;
+  color: var(--color-text-secondary);
+}
+
+/* ── Bio section ── */
+
+.about-section--bio {
+  padding-top: 52px;
+  padding-bottom: 110px;
+}
+
+.about-bio-inner {
+  width: 980px;
+  margin: 0 auto;
+}
+
+.about-bio-body {
+  margin: .7em 0 0;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.about-bio-body:first-child {
+  margin-top: 0;
+}
+
+/* ── Content sections ── */
+
+.about-section {
+  padding: 56px 20px 48px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.about-section--last {
+  padding-bottom: 96px;
+}
+
+.about-section-title {
+  margin: 0 0 10px;
+  font-size: 28px;
+}
+
+.about-section-body {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+/* ── Tablet (≤1068px) ── */
+
+@media screen and (max-width: 1068px) {
+  .about-hero {
+    height: 313px;
+  }
+  .about-hero-inner {
+    width: 692px;
+  }
+  .about-hero-photo {
+    width: 692px;
+    height: 313px;
+  }
+  .about-hero-photo img {
+    left: 285px;
+    width: 414px;
+    height: 313px;
+  }
+  .about-hero-title {
+    font-size: 32px;
+    line-height: 1.125;
+  }
+  .about-hero-role {
+    font-size: 19px;
+    line-height: 1.21053;
+  }
+  .about-section--bio {
+    padding-top: 48px;
+    padding-bottom: 64px;
+  }
+  .about-bio-inner {
+    width: 692px;
+  }
+  .about-section {
+    max-width: 692px;
+  }
+}
+
+/* ── Mobile (≤849px) ── */
+
+@media screen and (max-width: 849px) {
+  .about-hero {
+    height: auto;
+  }
+  .about-hero-inner {
+    width: 87.5%;
+  }
+  .about-hero-photo-container {
+    position: static;
+    margin-bottom: 40px;
+    padding-top: 96px;
+  }
+  .about-hero-photo {
+    position: static;
+    width: auto;
+    height: auto;
+    -webkit-transform: none;
+    transform: none;
+  }
+  .about-hero-photo img {
+    position: static;
+    width: 292px;
+    height: 220px;
+    margin: 0 auto;
+  }
+  .about-hero-headlines {
+    width: auto;
+    padding-top: 0;
+    text-align: center;
+  }
+  .about-hero-title {
+    font-size: 28px;
+    line-height: 1.14286;
+  }
+  .about-hero-role {
+    font-size: 17px;
+    line-height: 1.23529;
+    margin-bottom: 15px;
+  }
+  .about-section--bio {
+    padding-top: 0;
+    padding-bottom: 50px;
+  }
+  .about-bio-inner {
+    width: 87.5%;
+    margin: 0 auto;
+  }
+  .about-bio-body {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .about-section {
+    max-width: none;
+    width: 87.5%;
+  }
+}

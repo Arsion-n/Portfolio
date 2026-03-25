@@ -179,10 +179,12 @@ html.ie .unit-link:focus {
 }
 
 .unit-image {
+  display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
   border-radius: 12px;
-  background: linear-gradient(135deg, rgba(0,0,0,.04) 0%, rgba(0,0,0,.08) 100%);
+  object-fit: cover;
+  background: #f5f5f7;
 }
 
 /* ── Promo grid (two-column cards) — matches Apple promos module ── */
@@ -231,12 +233,14 @@ html.ie .unit-link:focus {
 }
 
 .promo-image {
+  display: block;
   width: 100%;
   max-width: 480px;
   aspect-ratio: 4 / 3;
   border-radius: 8px;
   margin-top: auto;
-  background: linear-gradient(135deg, rgba(0,0,0,.04) 0%, rgba(0,0,0,.08) 100%);
+  object-fit: cover;
+  background: #f5f5f7;
 }
 
 /* ── Responsive — Tablet (735–1068px) ── */
