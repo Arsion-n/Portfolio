@@ -18,7 +18,7 @@
 
 .about-hero-photo {
   margin: 0 auto;
-  width: 980px;
+  width: var(--content-width);
   height: 336px;
   position: absolute;
   z-index: 1;
@@ -39,7 +39,7 @@
 }
 
 .about-hero-inner {
-  width: 980px;
+  width: var(--content-width);
   margin: 0 auto;
   height: 100%;
   display: -webkit-box;
@@ -77,11 +77,11 @@
 
 .about-section--bio {
   padding-top: 52px;
-  padding-bottom: 110px;
+  padding-bottom: 48px;
 }
 
 .about-bio-inner {
-  width: 980px;
+  width: var(--content-width);
   margin: 0 auto;
 }
 
@@ -96,26 +96,55 @@
   margin-top: 0;
 }
 
-/* ── Content sections ── */
+/* ── Specs-style sections (Apple Tech Specs two-column layout) ── */
 
-.about-section {
-  padding: 56px 20px 48px;
-  max-width: 980px;
+.about-specs {
+  width: var(--content-width);
   margin: 0 auto;
+  padding: 40px 0;
+  border-top: 1px solid rgba(0, 0, 0, .12);
+  display: flex;
 }
 
-.about-section--last {
-  padding-bottom: 96px;
+.about-specs:last-child {
+  padding-bottom: 80px;
 }
 
-.about-section-title {
-  margin: 0 0 10px;
-  font-size: 28px;
-}
-
-.about-section-body {
+.about-specs-title {
+  flex: 0 0 28%;
   margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.17;
+  letter-spacing: .009em;
+}
+
+.about-specs-content {
+  flex: 1;
+}
+
+.about-specs-group + .about-specs-group {
+  margin-top: 28px;
+}
+
+.about-specs-group-title {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.43;
+  letter-spacing: -.01em;
+}
+
+.about-specs-item {
+  margin: 3px 0 0;
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: -.01em;
   color: var(--color-text-secondary);
+}
+
+.about-specs-group-title + .about-specs-item {
+  margin-top: 0;
 }
 
 /* ── Tablet (≤1068px) ── */
@@ -124,11 +153,7 @@
   .about-hero {
     height: 313px;
   }
-  .about-hero-inner {
-    width: 692px;
-  }
   .about-hero-photo {
-    width: 692px;
     height: 313px;
   }
   .about-hero-photo img {
@@ -146,13 +171,11 @@
   }
   .about-section--bio {
     padding-top: 48px;
-    padding-bottom: 64px;
+    padding-bottom: 40px;
   }
-  .about-bio-inner {
-    width: 692px;
-  }
-  .about-section {
-    max-width: 692px;
+  .about-specs-title {
+    font-size: 21px;
+    line-height: 1.19;
   }
 }
 
@@ -161,9 +184,6 @@
 @media screen and (max-width: 849px) {
   .about-hero {
     height: auto;
-  }
-  .about-hero-inner {
-    width: 87.5%;
   }
   .about-hero-photo-container {
     position: static;
@@ -184,9 +204,9 @@
     margin: 0 auto;
   }
   .about-hero-headlines {
-    width: auto;
+    width: 100%;
     padding-top: 0;
-    text-align: center;
+    text-align: left;
   }
   .about-hero-title {
     font-size: 28px;
@@ -195,22 +215,24 @@
   .about-hero-role {
     font-size: 17px;
     line-height: 1.23529;
-    margin-bottom: 15px;
+    margin-bottom: 40px;
   }
   .about-section--bio {
     padding-top: 0;
-    padding-bottom: 50px;
-  }
-  .about-bio-inner {
-    width: 87.5%;
-    margin: 0 auto;
+    padding-bottom: 32px;
   }
   .about-bio-body {
     font-size: 1rem;
     line-height: 1.5;
   }
-  .about-section {
-    max-width: none;
-    width: 87.5%;
+  .about-specs {
+    flex-direction: column;
+    gap: 16px;
+    padding: 28px 0;
+  }
+  .about-specs-title {
+    flex: none;
+    font-size: 19px;
+    line-height: 1.21;
   }
 }

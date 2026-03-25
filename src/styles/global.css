@@ -2,8 +2,8 @@
 
 :root {
   --nav-height: 50px;
-  --nav-max-width: 1100px;
-  --nav-padding-inline: 15px;
+  --nav-max-width: 1024px;
+  --nav-padding-inline: 22px;
   --nav-color: rgba(0, 0, 0, .8);
   --nav-color-hover: #000;
   --nav-bg: rgba(255, 255, 255, .8);
@@ -11,6 +11,19 @@
   --nav-mobile-font-size: 28px;
   --nav-duration: .24s;
   --nav-easing: cubic-bezier(.4, 0, .6, 1);
+  --content-width: 980px;
+}
+
+@media screen and (max-width: 1068px) {
+  :root {
+    --content-width: 692px;
+  }
+}
+
+@media screen and (max-width: 849px) {
+  :root {
+    --content-width: 87.5%;
+  }
 }
 
 *,
