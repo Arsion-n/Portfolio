@@ -1,10 +1,12 @@
 ---
-import { navItems } from '../data/navData';
+import { navItems } from '../../data/navData';
 import Menu from './Menu.astro';
 import Navigation from './Navigation.astro';
 import MobileNavigation from './MobileNavigation.astro';
-import { localizeHref, homeHrefFromPath, enSwitchHref, zhSwitchHref } from '../utils/locale';
+import { localizeHref, homeHrefFromPath, enSwitchHref, zhSwitchHref } from '../../utils/locale';
+import logo from '../../assets/brand/logo.svg';
 
+const logoSrc = typeof logo === 'string' ? logo : logo.src;
 const pathname = Astro.url.pathname;
 const enHref = enSwitchHref(pathname);
 const zhHref = zhSwitchHref(pathname);
@@ -15,7 +17,7 @@ const lh = (href: string) => localizeHref(pathname, href);
   <div class="header-inner">
     <nav class="site-nav">
       <a href={homeHref} class="site-brand">
-        <svg class="site-brand-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1" y="1" width="14" height="14" fill="currentColor"/></svg>
+        <img class="site-brand-icon" src={logoSrc} alt="" width="20" height="20" />
         Arison N.
       </a>
       <div class="site-nav-right">

@@ -23,8 +23,11 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# Windows-specific files
+Thumbs.db
+
 # jetbrains setting folder
 .idea/
 
-# reference templates (not part of the project)
-template/
+# legacy/reference files kept outside the Astro build (not part of the project)
+_legacy/

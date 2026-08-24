@@ -21,12 +21,13 @@ export const navItems: NavItem[] = [
     href: '/projects/',
     groups: [
       {
-        heading: 'Projects',
+        heading: 'Explore Projects',
         elevated: true,
         items: [
-          { label: 'Project A', href: '/projects/project-a/' },
-          { label: 'Project B', href: '/projects/project-b/' },
-          { label: 'Project C', href: '/projects/project-c/' },
+          { label: 'Residential', href: '/projects/residential/' },
+          { label: 'Commercial', href: '/projects/commercial/' },
+          { label: 'Hospitality', href: '/projects/hospitality/' },
+          { label: 'Graduation Project', href: '/projects/graduation-project/' },
         ],
       },
     ],

@@ -1,0 +1,25 @@
+---
+import { navItems } from '../../data/navData';
+import { localizeHref } from '../../utils/locale';
+import GlobeIcon from './icons/GlobeIcon.astro';
+
+const pathname = Astro.url.pathname;
+---
+
+<div id="main-menu" class="nav-links nav-desktop">
+  {navItems.map((item) => (
+    <a
+      href={localizeHref(pathname, item.href)}
+      {...(item.groups?.length ? { 'data-flyout': item.label.toLowerCase() } : {})}
+    >{item.label}</a>
+  ))}
+  <button
+    type="button"
+    data-flyout="language"
+    class="nav-language-trigger"
+    aria-label="Language"
+    aria-haspopup="true"
+  >
+    <GlobeIcon class="nav-language-icon" />
+  </button>
+</div>
