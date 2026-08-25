@@ -173,6 +173,14 @@ const lh = (href: string) => localizeHref(pathname, href);
     color: var(--nav-color);
     cursor: default;
     -webkit-tap-highlight-color: transparent;
+    /* Isolate into its own compositing layer to prevent Safari from
+       ghosting/duplicating the icon during the color transition while
+       the ancestor header has backdrop-filter applied. */
+    isolation: isolate;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 
   .nav-language-trigger:hover,
@@ -189,6 +197,8 @@ const lh = (href: string) => localizeHref(pathname, href);
     width: 18px;
     height: 18px;
     display: block;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
   }
 
   .mobile-nav-wrap {
