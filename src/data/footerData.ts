@@ -16,10 +16,11 @@ export const footerColumns: FooterColumn[] = [
   {
     groups: [
       {
-        title: 'Explore',
+        title: 'Projects',
         links: [
-          { label: 'Projects', href: '/projects/' },
-          { label: 'Featured Work', href: '/projects/' },
+          { label: 'All Projects', href: '/projects/' },
+          { label: 'Interior Architecture', href: '/projects/interior-architecture/' },
+          { label: 'Civil Engineering', href: '/projects/civil-engineering/' },
         ],
       },
       {
@@ -67,42 +68,11 @@ export const footerColumns: FooterColumn[] = [
       },
     ],
   },
+
   {
     groups: [
       {
-        title: 'Business',
-        links: [
-          { label: 'Commercial Projects', href: '/projects/' },
-          { label: 'Partnerships', href: '/about/' },
-        ],
-      },
-      {
-        title: 'Education',
-        links: [
-          { label: 'Academic Works', href: '/projects/' },
-          { label: 'Learning Journey', href: '/about/' },
-        ],
-      },
-      {
-        title: 'Public Sector',
-        links: [
-          { label: 'Urban Concepts', href: '/projects/' },
-          { label: 'Community Design', href: '/projects/' },
-        ],
-      },
-    ],
-  },
-  {
-    groups: [
-      {
-        title: 'Values',
-        links: [
-          { label: 'Design Principles', href: '/about/' },
-          { label: 'Sustainability', href: '/about/' },
-        ],
-      },
-      {
-        title: 'About Arison',
+        title: 'About',
         links: [
           { label: 'Story', href: '/about/' },
           { label: 'Career Path', href: '/about/' },

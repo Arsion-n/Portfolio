@@ -4,12 +4,13 @@ import { footerColumns } from '../data/footerData';
 
 const pathname = Astro.url.pathname;
 const lh = (href: string) => localizeHref(pathname, href);
+const columnCount = footerColumns.length;
 ---
 
 <footer id="site-footer" role="contentinfo">
   <div class="footer-content">
     <nav class="footer-nav" aria-label="Site directory">
-      <div class="footer-directory footer-directory--desktop">
+      <div class="footer-directory footer-directory--desktop" style={`--footer-column-count: ${columnCount}`}>
         {footerColumns.map((column) => (
           <div class="footer-directory-column">
             {column.groups.map((group) => (
@@ -82,7 +83,7 @@ const lh = (href: string) => localizeHref(pathname, href);
 
   .footer-directory--desktop {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(var(--footer-column-count, 5), minmax(0, 1fr));
     column-gap: 32px;
     row-gap: 0;
   }
