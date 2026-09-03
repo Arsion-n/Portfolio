@@ -3,7 +3,7 @@ import '../styles/global.css'
 import Header from '../components/nav/Header.astro'
 import Footer from '../components/Footer.astro'
 import LocalNav from '../components/nav/LocalNav.astro'
-import { alternatePageUrl } from '../utils/locale'
+import { alternatePageUrl, isLandingPath } from '../utils/locale'
 
 interface LocalNavItem {
   label: string;
@@ -36,7 +36,7 @@ const pathname = Astro.url.pathname;
 const canonicalUrl = new URL(pathname, siteUrl).toString();
 const imageUrl = new URL(ogImage, siteUrl).toString();
 const ogLocale = lang.replace('-', '_');
-const isHomePath = pathname === '/' || pathname === '/en/' || pathname === '/zh/';
+const isHomePath = isLandingPath(pathname);
 const languageAlternates = [
   { hreflang: 'en-HK', href: alternatePageUrl(siteUrl, pathname, 'en') },
   { hreflang: 'zh-HK', href: alternatePageUrl(siteUrl, pathname, 'zh') },
@@ -57,7 +57,7 @@ const languageAlternates = [
 		{languageAlternates.map((alternate) => (
 			<link rel="alternate" hreflang={alternate.hreflang} href={alternate.href} />
 		))}
-		<link rel="alternate" hreflang="x-default" href={`${siteUrl}/en/`} />
+		<link rel="alternate" hreflang="x-default" href={`${siteUrl}/en/about/`} />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={canonicalUrl} />
 		<meta property="og:title" content={title} />
@@ -71,7 +71,7 @@ const languageAlternates = [
 		<meta name="twitter:image" content={imageUrl} />
 		<title>{title}</title>
 	</head>
-	<body class:list={[isHomePath && 'is-home']}>
+	<body class:list={[isHomePath && 'is-home', localNav && 'has-localnav']}>
 		<Header />
 		{localNav && <LocalNav title={localNav.title} items={localNav.items} />}
 		<main>

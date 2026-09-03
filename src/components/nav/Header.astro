@@ -81,7 +81,9 @@ const lh = (href: string) => localizeHref(pathname, href);
     z-index: 100;
   }
 
-  body.is-home header {
+  /* A local nav sticks to the top itself, so the global header must scroll
+     away to avoid covering it. */
+  body.is-home:not(.has-localnav) header {
     position: sticky;
   }
 

@@ -11,8 +11,15 @@ export function localizeHref(pathname: string, href: string): string {
   return `${prefix}${href}`;
 }
 
+/** Landing page of the current locale. `/en/` and `/zh/` redirect here. */
 export function homeHrefFromPath(pathname: string): string {
-  return `${getLocalePrefix(pathname)}/`;
+  return `${getLocalePrefix(pathname)}/about/`;
+}
+
+/** True on the landing page itself, or on a root path that redirects to it. */
+export function isLandingPath(pathname: string): boolean {
+  if (/^\/(en|zh)?\/?$/.test(pathname)) return true;
+  return pathname === homeHrefFromPath(pathname);
 }
 
 /** Same path in English (for language switcher). */

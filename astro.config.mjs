@@ -10,11 +10,14 @@ export default defineConfig({
   devToolbar: {
     enabled: false,
   },
-  // Production (Cloudflare) uses public/_redirects for a fast edge-level
-  // HTTP 301 on '/'. This config-level redirect is a fallback so the route
-  // still works (via meta refresh) in `astro dev`/`astro preview`, where
-  // Cloudflare's _redirects file isn't processed.
+  // The About page is the landing page, so the locale roots only redirect to
+  // it. Production (Cloudflare) uses public/_redirects for a fast edge-level
+  // HTTP 301. These config-level redirects are a fallback so the routes still
+  // work (via meta refresh) in `astro dev`/`astro preview`, where Cloudflare's
+  // _redirects file isn't processed.
   redirects: {
-    '/': '/en/',
+    '/': '/en/about/',
+    '/en/': '/en/about/',
+    '/zh/': '/zh/about/',
   },
 });
