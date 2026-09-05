@@ -1,5 +1,7 @@
 # ledger.arison.me — NAS 部署套件（Synology DS925+）
 
+**由零開始安裝：先睇 [SETUP.md](SETUP.md)（逐步撳掣）。** 下面係架構同檔案說明。
+
 Portfolio 網站繼續只服務 `arison.me`。呢個目錄係 **copy 去 NAS** 用，**唔會**跟 Astro / wrangler 上線。真正交易只存在 NAS 嘅 `data/journal/`，唔好 commit 返 GitHub。
 
 | 你用 | 做咩 |
