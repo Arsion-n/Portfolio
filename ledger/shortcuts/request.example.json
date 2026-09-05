@@ -1,0 +1,11 @@
+{
+  "date": "2026-09-05",
+  "payee": "Cafe",
+  "narration": "午餐",
+  "amount": 85,
+  "expense_account": "Expenses:Food",
+  "asset_account": "Assets:Bank:HSBC",
+  "pay": "FPS",
+  "member": "arison",
+  "original": "10.00 USD"
+}

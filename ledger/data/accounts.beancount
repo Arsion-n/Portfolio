@@ -1,0 +1,30 @@
+; 科目表 — 按你實際銀行／卡改名即可。
+; 加新科目：複製一行 open，日期用開戶／開始記帳日。
+
+; --- Assets ---
+2020-01-01 open Assets:Bank:HSBC                 HKD
+2020-01-01 open Assets:Bank:HangSeng             HKD
+2020-01-01 open Assets:PayMe                     HKD
+2020-01-01 open Assets:Octopus                   HKD
+2020-01-01 open Assets:Cash                      HKD
+
+; --- Liabilities ---
+2020-01-01 open Liabilities:CreditCard:HSBC      HKD
+
+; --- Equity ---
+2020-01-01 open Equity:Opening-Balances          HKD
+
+; --- Income ---
+2020-01-01 open Income:Salary                    HKD
+2020-01-01 open Income:Other                     HKD
+
+; --- Expenses ---
+2020-01-01 open Expenses:Food                    HKD
+2020-01-01 open Expenses:Transport               HKD
+2020-01-01 open Expenses:Housing                 HKD
+2020-01-01 open Expenses:Utilities               HKD
+2020-01-01 open Expenses:Subscription            HKD
+2020-01-01 open Expenses:Health                  HKD
+2020-01-01 open Expenses:Shopping                HKD
+2020-01-01 open Expenses:Travel                  HKD
+2020-01-01 open Expenses:Other                   HKD

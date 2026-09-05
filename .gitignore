@@ -20,6 +20,12 @@ pnpm-debug.log*
 .env
 .env.production
 
+# ledger NAS runtime (never publish real books or tunnel tokens)
+ledger/.env
+ledger/backups/
+ledger/**/__pycache__/
+ledger/**/.pytest_cache/
+
 # macOS-specific files
 .DS_Store
 

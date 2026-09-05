@@ -1,0 +1,16 @@
+; Fava 左側 Query。自訂欄位喺 Journal 展開交易就見到。
+; 表格視圖：Query 頁自己 paste，例如
+;   SELECT date, payee, narration, account, position
+;   WHERE account ~ 'Expenses' ORDER BY date DESC
+
+2020-01-01 query "expenses" "
+SELECT date, payee, narration, account, position
+WHERE account ~ 'Expenses'
+ORDER BY date DESC
+"
+
+2020-01-01 query "expenses-by-account" "
+SELECT account, sum(position)
+WHERE account ~ 'Expenses'
+GROUP BY account
+"

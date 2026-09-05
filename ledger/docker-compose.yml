@@ -1,0 +1,50 @@
+# Ledger stack for Synology DS925+.
+# Copy this folder to /volume1/docker/ledger and create a Container Manager Project.
+#
+# LAN 第一次測試：暫時取消下面 proxy.ports 註解。
+# 確認 Fava 得之後，加返註解，只經 Cloudflare Tunnel 出入。
+# 千祈唔好喺 Router 開 80/5000 port。
+
+services:
+  proxy:
+    image: caddy:2-alpine
+    container_name: ledger-proxy
+    restart: unless-stopped
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+    # ports:
+    #   - "5000:80"
+    depends_on:
+      - fava
+      - api
+
+  fava:
+    image: yegle/fava:v1.30
+    container_name: ledger-fava
+    restart: unless-stopped
+    volumes:
+      - ./data:/bean
+    environment:
+      BEANCOUNT_FILE: /bean/main.beancount
+
+  api:
+    build: ./api
+    image: ledger-hook:local
+    container_name: ledger-api
+    restart: unless-stopped
+    volumes:
+      - ./data:/bean
+      - ./schema:/schema:ro
+    environment:
+      BEAN_ROOT: /bean
+      SCHEMA_PATH: /schema/columns.yaml
+      API_KEY: ${API_KEY}
+      DEFAULT_ASSET_ACCOUNT: ${DEFAULT_ASSET_ACCOUNT:-Assets:Bank:HSBC}
+
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: ledger-tunnel
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run --token ${TUNNEL_TOKEN}
+    depends_on:
+      - proxy
