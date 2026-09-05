@@ -1,0 +1,27 @@
+; 期初餘額 — 取消註解並改金額。
+; 每個真實帳戶一筆，日期用你開始記帳當日。
+; 外幣：入帳用銀行扣完手續費後嘅 HKD，唔好分開記 USD。
+
+; 2026-09-05 * "Opening balance" "HSBC"
+;   Assets:Bank:HSBC              0.00 HKD
+;   Equity:Opening-Balances
+
+; 2026-09-05 * "Opening balance" "Hang Seng"
+;   Assets:Bank:HangSeng          0.00 HKD
+;   Equity:Opening-Balances
+
+; 2026-09-05 * "Opening balance" "PayMe"
+;   Assets:PayMe                  0.00 HKD
+;   Equity:Opening-Balances
+
+; 2026-09-05 * "Opening balance" "Octopus"
+;   Assets:Octopus                0.00 HKD
+;   Equity:Opening-Balances
+
+; 2026-09-05 * "Opening balance" "Cash"
+;   Assets:Cash                   0.00 HKD
+;   Equity:Opening-Balances
+
+; 2026-09-05 * "Opening balance" "HSBC credit card"
+;   Liabilities:CreditCard:HSBC   0.00 HKD
+;   Equity:Opening-Balances

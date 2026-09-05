@@ -1,0 +1,17 @@
+; Arison Ledger — 主檔（include only；交易寫入 journal/）
+option "title" "Arison Ledger"
+option "operating_currency" "HKD"
+
+; --- Fava ---
+2020-01-01 custom "fava-option" "language" "zh_Hant_TW"
+2020-01-01 custom "fava-option" "locale" "zh_HK"
+2020-01-01 custom "fava-option" "default-page" "journal/"
+2020-01-01 custom "fava-option" "auto-reload" "true"
+2020-01-01 custom "fava-option" "indent" "2"
+2020-01-01 custom "fava-option" "currency-column" "52"
+2020-01-01 custom "fava-option" "default-file" "/bean/journal/2026.beancount"
+
+include "accounts.beancount"
+include "opening.beancount"
+include "queries.beancount"
+include "journal/2026.beancount"

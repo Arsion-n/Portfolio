@@ -1,0 +1,96 @@
+# 自訂欄位總表（single source of truth）
+# 改呢個檔 = 改 Fava metadata、Shortcuts API、同手機選單。
+# API 每次 request 都會重讀，多數情況唔使重啟 container。
+#
+# key     Beancount metadata 名（只可用小寫英文字母、數字、底線）
+# label   顯示名（中文）
+# type    enum | string | number | date
+# values  type=enum 先要
+# required  Shortcuts / API 必填
+# shortcut  出現喺 GET /hook/schema，方便 iPhone Shortcut 做選單
+# default 空值時用
+# description 註解
+
+columns:
+  - key: member
+    label: 成員
+    type: enum
+    required: false
+    shortcut: true
+    default: arison
+    description: 而家得你用；之後家庭版直接喺 values 加名。
+    values:
+      - arison
+
+  - key: pay
+    label: 付款方式
+    type: enum
+    required: false
+    shortcut: true
+    description: 點俾錢。帳戶（Assets / Liabilities）另外揀。
+    values:
+      - FPS
+      - PayMe
+      - Octopus
+      - AlipayHK
+      - WeChatPay
+      - Visa
+      - Mastercard
+      - Autopay
+      - Cash
+      - Other
+
+  - key: project
+    label: 項目
+    type: enum
+    required: false
+    shortcut: true
+    description: 補充 Expenses 科目，例如裝修、旅行、婚禮。
+    values:
+      - personal
+      - family
+      - work
+      - travel
+
+  - key: location
+    label: 地點
+    type: string
+    required: false
+    shortcut: false
+    description: 店舖地區或城市，自由填。
+
+  - key: original
+    label: 外幣原文
+    type: string
+    required: false
+    shortcut: true
+    description: >
+      帳面永遠只記銀行扣完手續費之後嘅 HKD。
+      想留底用呢欄，例如 "12.99 USD" 或 "980 JPY"。
+
+  - key: invoice
+    label: 發票／單號
+    type: string
+    required: false
+    shortcut: false
+
+  - key: receipt
+    label: 收據檔名
+    type: string
+    required: false
+    shortcut: false
+    description: NAS 上收據檔名或路徑，唔會自動上傳。
+
+  - key: split_with
+    label: 分帳對象
+    type: string
+    required: false
+    shortcut: false
+    description: 家庭版／同屋預留。而家可留空。
+
+  - key: note
+    label: 備註
+    type: string
+    required: false
+    shortcut: false
+    description: 額外備註。店名用 payee，一句描述用 narration。
